@@ -42,7 +42,7 @@ export const site = {
   hero: {
     eyebrow: "Small businesses. A future powered by agents.",
     heading: "Every small business deserves an agent.",
-    lines: ["Every small business", "deserves an agent."],
+    typingHeadlines: ["EVERY BUSINESS", "DESERVES AN AGENT"],
     description: "Picoq is building a way for small businesses to be discovered by the personal agents their customers use—starting with products, prices, and availability.",
     supporting: "Our online shopping assistant is live. Local discovery pilots are in development.",
     scroll: "Small beginnings. Bigger possibilities.",
@@ -50,8 +50,6 @@ export const site = {
     index: "Independent businesses. Infinite possibility.",
     scrollLabel: "Scroll to discover",
     corner: "Building for a world of personal agents",
-    typingPrefix: "Starting with",
-    typingWords: ["products.", "prices.", "availability."],
   },
   ticker: {
     label: "Products. Prices. Availability. A place in the conversation.",
@@ -91,10 +89,10 @@ export const site = {
       { value: "99", label: "tracked store-link clicks" },
     ],
     detail: "25 users opened links to Amazon or Flipkart.",
+    // Founder-reported combined pilot API usage, separate from customer searches.
     apiValue: "500",
     apiUnit: "SerpAPI calls",
     apiNote: "Combined usage supporting Amazon and Flipkart comparisons.",
-    footnote: "Usage snapshot: 19 October 2026. SerpAPI usage is founder-reported and may differ in scope from in-app event counts. Store-link clicks do not establish purchases.",
   },
   discovery: {
     eyebrow: "02 / The next conversation",
@@ -151,7 +149,7 @@ export const site = {
     eyebrow: "04 / Two places, one question",
     heading: "How does local discovery work in different communities?",
     places: [
-      { name: "Gowribidanuru", country: "India", marker: "IN", status: "In development", description: "A city-wide experiment exploring how people discover everyday essentials from local shops.", detail: "Starting with everyday needs: bread, vegetables, and drinks.", illustration: "india" },
+      { name: "Gowribidanuru", country: "India", marker: "IN", status: "In development", description: "A city-wide experiment exploring how people discover everyday essentials from local shops.", detail: "", illustration: "india" },
       { name: "New York", country: "USA", marker: "US", status: "In development", description: "A parallel pilot exploring the same needs in a different urban and retail environment.", detail: "Different surroundings. The same everyday questions.", illustration: "new-york" },
     ],
     learning: "We want to understand how language, shopping habits, digital familiarity, and local business practices shape discovery.",

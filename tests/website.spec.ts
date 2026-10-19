@@ -12,7 +12,6 @@ test("the complete site renders without runtime errors or external requests", as
   await expect(page.getByRole("heading", { level: 1 })).toHaveAccessibleName("Every small business deserves an agent.");
   await expect(page.locator(".metric-number")).toHaveText(["53.", "325.", "101.", "99."]);
   await expect(page.locator(".api-metric")).toContainText("500SerpAPI calls");
-  await expect(page.locator(".footnote")).toContainText("SerpAPI usage is founder-reported");
   await expect(page.locator(".pilot-panel .status-pill")).toHaveText(["In development", "In development"]);
   await expect(page.locator(".vision-diagram")).toContainText("Future concept");
   await expect(page.locator(".local-demo")).toContainText("All shop names, distances, prices, times, and stock details are sample data.");

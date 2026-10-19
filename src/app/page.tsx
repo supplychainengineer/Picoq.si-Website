@@ -8,6 +8,7 @@ import { HandArtwork } from "@/components/hand-artwork";
 import { MotionControl } from "@/components/motion-control";
 import { EditorialMotion } from "@/components/editorial-motion";
 import { DiscoveryExperience } from "@/components/discovery-experience";
+import { HeroHeadline } from "@/components/hero-headline";
 
 function ExternalLink({ href, children, className = "", arrow = true }: { href: string; children: React.ReactNode; className?: string; arrow?: boolean }) {
   return <a href={href} target="_blank" rel="noopener noreferrer" className={className}>{children}{arrow && <ArrowUpRight size={18} strokeWidth={1.6} aria-hidden="true" />}</a>;
@@ -27,17 +28,16 @@ export default function Home() {
         <section className="cinematic-hero" aria-labelledby="hero-title">
           <HeroBackdrop><HandArtwork /></HeroBackdrop>
           <div className="hero-center section-shell">
-            <p className="eyebrow cinematic-eyebrow">{site.hero.eyebrow}</p>
-            <h1 id="hero-title" aria-label={site.hero.heading}>{site.hero.lines.map(line => <span key={line} className="hero-line" aria-hidden="true">{line}</span>)}</h1>
-            <p className="hero-description">{site.hero.description}</p>
-            <div className="hero-actions"><ExternalLink href={site.links.agent} className="button button-dark">{site.actions.live}</ExternalLink><ExternalLink href={site.links.merchant} className="button button-outline">{site.actions.business}</ExternalLink></div>
-            <p className="hero-supporting"><span className="status-dot" />{site.hero.supporting}</p>
+            <h1 id="hero-title" aria-label={site.hero.heading}><HeroHeadline phrases={site.hero.typingHeadlines} /></h1>
           </div>
           <div className="hero-edge section-shell">
-            <div className="hero-index"><span className="mono">01 / {site.name.toUpperCase()}</span><span>{site.hero.index}</span></div>
-            <div className="hero-typewriter"><span>{site.hero.typingPrefix}</span><span className="word-cycle" aria-hidden="true">{site.hero.typingWords.map(word => <span className="motion-loop" key={word}>{word}</span>)}</span><span className="sr-only">{site.hero.typingWords.join(" ")}</span></div>
             <a href="#what-is-live" className="hero-scroll" aria-label={site.hero.scrollLabel}><span>{site.hero.scrollLabel}</span><ArrowDown size={20} strokeWidth={1} aria-hidden="true" /></a>
           </div>
+        </section>
+
+        <section className="hero-introduction section-shell" aria-labelledby="intro-title">
+          <div><p className="eyebrow">{site.hero.eyebrow}</p><h2 id="intro-title">{site.hero.heading}</h2></div>
+          <div><p className="hero-description">{site.hero.description}</p><div className="hero-actions"><ExternalLink href={site.links.agent} className="button button-dark">{site.actions.live}</ExternalLink><ExternalLink href={site.links.merchant} className="button button-outline">{site.actions.business}</ExternalLink></div><p className="hero-supporting"><span className="status-dot" />{site.hero.supporting}</p></div>
         </section>
 
         <div className="mission-ticker" aria-label={site.ticker.label}>
@@ -53,7 +53,6 @@ export default function Home() {
           <div className="section-heading-row"><h2 id="evidence-title" className="display-heading preserve-lines">{site.evidence.heading}</h2><div className="evidence-intro"><p>{site.evidence.description}</p><ExternalLink href={site.links.agent} className="text-link">{site.actions.live}</ExternalLink></div></div>
           <div className="metrics">{site.evidence.metrics.map(metric => <div className="metric" key={metric.label}><span className="metric-number">{metric.value}<span className="metric-period">.</span></span><span className="metric-label">{metric.label}</span></div>)}</div>
           <div className="evidence-support"><p><ArrowDownRight size={20} aria-hidden="true" />{site.evidence.detail}</p><div className="api-metric"><span className="api-number">{site.evidence.apiValue}</span><div><strong>{site.evidence.apiUnit}</strong></div><p>{site.evidence.apiNote}</p></div></div>
-          <p className="footnote">{site.evidence.footnote}</p>
         </section>
 
         <section id="how-it-works" className="discovery section-space" aria-labelledby="discovery-title">
@@ -70,7 +69,7 @@ export default function Home() {
 
         <section id="pilots" className="pilots section-shell section-space" aria-labelledby="pilots-title">
           <SectionLabel>{site.pilots.eyebrow}</SectionLabel><div className="pilots-heading"><h2 id="pilots-title" className="display-heading">{site.pilots.heading}</h2><span className="pilot-heading-art" aria-hidden="true"><Sprout size={52} strokeWidth={1} /></span></div>
-          <div className="pilot-panels">{site.pilots.places.map(place => <article key={place.name} className={`pilot-panel pilot-${place.illustration}`}><div className="pilot-panel-top"><span className="mono">{place.marker} / {place.country}</span><span className="status-pill"><span className="outline-dot" />{place.status}</span></div><h3>{place.name}<span>{place.country}</span></h3><p>{place.description}</p><span className="pilot-detail">{place.detail}</span><StreetIllustration variant={place.illustration} /></article>)}</div>
+          <div className="pilot-panels">{site.pilots.places.map(place => <article key={place.name} className={`pilot-panel pilot-${place.illustration}`}><div className="pilot-panel-top"><span className="mono">{place.marker} / {place.country}</span><span className="status-pill"><span className="outline-dot" />{place.status}</span></div><h3>{place.name}<span>{place.country}</span></h3><p>{place.description}</p>{place.detail && <span className="pilot-detail">{place.detail}</span>}<StreetIllustration variant={place.illustration} /></article>)}</div>
           <div className="shared-learning"><span className="eyebrow">{site.pilots.learningLabel}</span><p>{site.pilots.learning}</p><ArrowUpRight size={28} strokeWidth={1.2} aria-hidden="true" /></div>
         </section>
 
