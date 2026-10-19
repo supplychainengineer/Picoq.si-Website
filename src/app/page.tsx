@@ -3,6 +3,8 @@ import { site } from "@/content/site";
 import { Navigation } from "@/components/navigation";
 import { BrandMark, SparkMark, Wordmark } from "@/components/brand";
 import { LocalDemo, SellerDemo, StreetIllustration, VisionDiagram } from "@/components/illustrations";
+import { HeroBackdrop } from "@/components/hero-backdrop";
+import { HandArtwork } from "@/components/hand-artwork";
 
 function ExternalLink({ href, children, className = "", arrow = true }: { href: string; children: React.ReactNode; className?: string; arrow?: boolean }) {
   return <a href={href} target="_blank" rel="noopener noreferrer" className={className}>{children}{arrow && <ArrowUpRight size={18} strokeWidth={1.6} aria-hidden="true" />}</a>;
@@ -17,7 +19,9 @@ export default function Home() {
     <>
       <Navigation />
       <main id="main" tabIndex={-1}>
-        <section className="hero section-shell" aria-labelledby="hero-title">
+        <section className="hero-stage" aria-labelledby="hero-title">
+          <HeroBackdrop labels={site.hero.background}><HandArtwork /></HeroBackdrop>
+          <div className="hero section-shell">
           <p className="eyebrow hero-eyebrow"><span className="status-dot" />{site.hero.eyebrow}</p>
           <div className="hero-grid">
             <div className="hero-text">
@@ -29,6 +33,7 @@ export default function Home() {
             <div className="hero-visual"><VisionDiagram /></div>
           </div>
           <div className="hero-baseline"><span>{site.hero.scroll}</span><a href="#what-is-live" aria-label={site.navigation[0].label}><ArrowDown size={19} aria-hidden="true" /></a></div>
+          </div>
         </section>
 
         <section id="what-is-live" className="stages section-shell" aria-label={site.accessibility.stages}>
@@ -39,7 +44,7 @@ export default function Home() {
           <SectionLabel>{site.evidence.eyebrow}</SectionLabel>
           <div className="section-heading-row"><h2 id="evidence-title" className="display-heading preserve-lines">{site.evidence.heading}</h2><div className="evidence-intro"><p>{site.evidence.description}</p><ExternalLink href={site.links.agent} className="text-link">{site.actions.live}</ExternalLink></div></div>
           <div className="metrics">{site.evidence.metrics.map(metric => <div className="metric" key={metric.label}><span className="metric-number">{metric.value}<span className="metric-period">.</span></span><span className="metric-label">{metric.label}</span></div>)}</div>
-          <div className="evidence-support"><p><ArrowDownRight size={20} aria-hidden="true" />{site.evidence.detail}</p><div className="api-metric"><span className="api-number">{site.evidence.apiValue}</span><div><strong>{site.evidence.apiUnit}</strong><span>{site.evidence.apiLabel}</span></div><p>{site.evidence.apiNote}</p></div></div>
+          <div className="evidence-support"><p><ArrowDownRight size={20} aria-hidden="true" />{site.evidence.detail}</p><div className="api-metric"><span className="api-number">{site.evidence.apiValue}</span><div><strong>{site.evidence.apiUnit}</strong></div><p>{site.evidence.apiNote}</p></div></div>
           <p className="footnote">{site.evidence.footnote}</p>
         </section>
 
@@ -61,7 +66,7 @@ export default function Home() {
           <div className="shared-learning"><span className="eyebrow">{site.pilots.learningLabel}</span><p>{site.pilots.learning}</p><ArrowUpRight size={28} strokeWidth={1.2} aria-hidden="true" /></div>
         </section>
 
-        <section id="our-story" className="story section-space" aria-labelledby="story-title"><div className="section-shell"><SectionLabel>{site.story.eyebrow}</SectionLabel><div className="story-grid"><div className="story-intro"><h2 id="story-title" className="display-heading preserve-lines">{site.story.heading}</h2><p className="section-description">{site.story.intro}</p><ExternalLink href={site.links.wireframe} className="text-link">{site.actions.wireframe}</ExternalLink><p className="concept-label">{site.story.conceptLabel}</p></div><ol className="story-chapters">{site.story.chapters.map((chapter, i) => <li key={chapter.title}><span className="chapter-number mono">0{i + 1}</span><div><span className="eyebrow">{chapter.stage}</span><h3>{chapter.title}</h3><p>{chapter.description}</p></div></li>)}</ol></div></div></section>
+        <section id="our-story" className="story section-space" aria-labelledby="story-title"><div className="section-shell"><SectionLabel>{site.story.eyebrow}</SectionLabel><div className="story-grid"><div className="story-intro"><h2 id="story-title" className="display-heading preserve-lines">{site.story.heading}</h2><p className="section-description">{site.story.intro}</p></div><ol className="story-chapters">{site.story.chapters.map((chapter, i) => <li key={chapter.title}><span className="chapter-number mono">0{i + 1}</span><div><span className="eyebrow">{chapter.stage}</span><h3>{chapter.title}</h3><p>{chapter.description}</p></div></li>)}</ol></div></div></section>
 
         <section className="vision-section section-space" aria-labelledby="vision-title"><div className="section-shell"><SectionLabel light>{site.vision.eyebrow}</SectionLabel><BrandMark className="vision-brand" /><h2 id="vision-title">{site.vision.statement.split(/(found, understood, and reached)/).map((part, i) => <span key={i} className={i === 1 ? "vision-highlight" : ""}>{part}</span>)}</h2><div className="vision-footer"><span className="eyebrow">{site.vision.signature}</span><p>{site.vision.description}</p></div></div></section>
 

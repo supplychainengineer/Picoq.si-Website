@@ -13,7 +13,6 @@ export const site = {
     agent: "https://wa.me/12293508928",
     merchant: "https://wa.me/12293508928?text=Hi%20Picoq%2C%20I%20want%20to%20join%20the%20local%20business%20pilot.",
     existing: "https://picoq.shop/",
-    wireframe: "https://picoq-local-wireframe.nithinn633.chatgpt.site",
   },
   actions: {
     try: "Try Picoq",
@@ -22,7 +21,6 @@ export const site = {
     pilot: "Join the business pilot",
     chat: "Chat with Picoq",
     existing: "Visit our existing website",
-    wireframe: "Explore the local product wireframe",
   },
   accessibility: {
     skip: "Skip to content",
@@ -48,6 +46,7 @@ export const site = {
     description: "Picoq is building a way for small businesses to be discovered by the personal agents their customers use—starting with products, prices, and availability.",
     supporting: "Our online shopping assistant is live. Local discovery pilots are in development.",
     scroll: "Small beginnings. Bigger possibilities.",
+    background: { pause: "Pause background motion", play: "Play background motion" },
   },
   visionDiagram: {
     label: "Our vision",
@@ -83,7 +82,6 @@ export const site = {
     detail: "25 users opened links to Amazon or Flipkart.",
     apiValue: "500",
     apiUnit: "SerpAPI calls",
-    apiLabel: "Founder-reported pilot usage",
     apiNote: "Combined usage supporting Amazon and Flipkart comparisons.",
     footnote: "Usage snapshot: 19 October 2026. SerpAPI usage is founder-reported and may differ in scope from in-app event counts. Store-link clicks do not establish purchases.",
   },
@@ -157,7 +155,6 @@ export const site = {
       { title: "Bring discovery closer to home", description: "We are developing local pilots focused on everyday products, observed prices, and availability.", stage: "In development" },
       { title: "Make small businesses discoverable by agents", description: "Our long-term ambition is to help small businesses participate as personal agents become part of how people find and buy things.", stage: "Long-term vision" },
     ],
-    conceptLabel: "Interactive concept with sample data",
   },
   vision: {
     eyebrow: "The bigger picture / Long-term vision",

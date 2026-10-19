@@ -11,7 +11,8 @@ test("the complete site renders without runtime errors or external requests", as
   expect(response?.status()).toBe(200);
   await expect(page.getByRole("heading", { level: 1 })).toHaveAccessibleName("Every small business deserves an agent.");
   await expect(page.locator(".metric-number")).toHaveText(["53.", "325.", "101.", "99."]);
-  await expect(page.locator(".api-metric")).toContainText("Founder-reported pilot usage");
+  await expect(page.locator(".api-metric")).toContainText("500SerpAPI calls");
+  await expect(page.locator(".footnote")).toContainText("SerpAPI usage is founder-reported");
   await expect(page.locator(".pilot-panel .status-pill")).toHaveText(["In development", "In development"]);
   await expect(page.locator(".vision-diagram")).toContainText("Future concept");
   await expect(page.locator(".local-demo")).toContainText("All shop names, distances, prices, times, and stock details are sample data.");
@@ -32,10 +33,9 @@ test("every CTA destination and section navigation target is valid", async ({ pa
     agent: "https://wa.me/12293508928",
     merchant: "https://wa.me/12293508928?text=Hi%20Picoq%2C%20I%20want%20to%20join%20the%20local%20business%20pilot.",
     existing: "https://picoq.shop/",
-    wireframe: "https://picoq-local-wireframe.nithinn633.chatgpt.site",
   };
   const outbound = await page.locator('a[href^="https:"]').evaluateAll(links => links.map(link => ({ href: link.getAttribute("href"), text: link.textContent, rel: link.getAttribute("rel") })));
-  expect(outbound.length).toBeGreaterThan(10);
+  expect(new Set(outbound.map(link => link.href))).toEqual(new Set(Object.values(expected)));
   for (const link of outbound) {
     expect(Object.values(expected)).toContain(link.href);
     expect(link.rel).toContain("noopener");

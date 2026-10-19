@@ -1,6 +1,6 @@
 # Picoq public website
 
-A responsive, typography-led website for PICOQ, built with Next.js App Router, TypeScript, Tailwind CSS, Lucide, and original SVG illustrations. The page is statically rendered; only the accessible mobile navigation needs client JavaScript. Fonts are served locally using the Manrope variable font package (SIL Open Font License, included with the package).
+A responsive, typography-led website for PICOQ, built with Next.js App Router, TypeScript, Tailwind CSS, Lucide, and original SVG illustrations. The page is statically rendered; the mobile navigation and background pause control use small client components. Fonts are served locally using the Manrope variable font package (SIL Open Font License, included with the package).
 
 ## Run locally
 
@@ -27,8 +27,8 @@ In the managed cloud workspace, use `npm ci --cache /workspace/.cache/npm` to ke
 | Change | Configuration |
 | --- | --- |
 | Page copy, FAQ, privacy information | Named section objects, such as `hero`, `business`, `faq`, `footer` |
-| WhatsApp CTAs, merchant message, existing site, wireframe | `links` and `actions` |
-| Recorded metrics and attribution | `evidence.metrics`, `apiValue`, `apiLabel`, `apiNote`, `footnote` |
+| WhatsApp CTAs, merchant message, existing site | `links` and `actions` |
+| Recorded metrics and attribution | `evidence.metrics`, `apiValue`, `apiNote`, `footnote` |
 | Pilot locations, descriptions, status | `pilots.places` |
 | Live / planned / future summary | `stages` and `story.chapters` |
 | Metadata and deployment settings | `metadata` and `deployment` |
@@ -36,7 +36,7 @@ In the managed cloud workspace, use `npm ci --cache /workspace/.cache/npm` to ke
 
 Keep stage language consistent across these sections when changing an actual product status. Metrics are static content, not fetched data. The 500 SerpAPI calls are combined founder-reported usage; they are separate from the 101 customer product searches. Store-link clicks do not establish purchases. Update the dated footnote only when a new snapshot is supplied.
 
-The layout is in `src/app/page.tsx`; reusable illustrations and navigation are in `src/components`. Visual tokens, responsive rules, and motion are in `src/app/globals.css`. Motion never hides essential text and is disabled with `prefers-reduced-motion`. The SVG line art makes no claim about pilot coverage or participating shops.
+The layout is in `src/app/page.tsx`; reusable illustrations and navigation are in `src/components`. Visual tokens, responsive rules, and motion are in `src/app/globals.css`. The hero background combines an original monochrome SVG hand study (`hand-artwork.tsx`), CSS halftone dots, and a grain overlay. `hero-backdrop.tsx` adds a pause/play control; the background stays still without JavaScript and for reduced-motion users. No video file or external download is required. Motion never hides essential text. The SVG line art makes no claim about pilot coverage or participating shops.
 
 The local shopping conversation and seller check-in are labelled illustrations. They deliberately have no input, checkout, ordering, or operational seller controls. Real CTAs open the exact supplied WhatsApp destinations.
 
