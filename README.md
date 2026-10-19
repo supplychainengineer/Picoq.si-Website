@@ -1,6 +1,6 @@
 # Picoq public website
 
-A responsive, typography-led website for PICOQ, built with Next.js App Router, TypeScript, Tailwind CSS, Lucide, and original SVG illustrations. The page is statically rendered; the mobile navigation and background pause control use small client components. Fonts are served locally using the Manrope variable font package (SIL Open Font License, included with the package).
+A responsive, typography-led website for PICOQ, built with Next.js App Router, TypeScript, Tailwind CSS, Lucide, and GSAP. The page is statically rendered; the mobile navigation, discovery step selection, animation controls, and scroll text reveal use client components. Fonts are served locally using the Manrope variable font package (SIL Open Font License, included with the package).
 
 ## Run locally
 
@@ -36,7 +36,9 @@ In the managed cloud workspace, use `npm ci --cache /workspace/.cache/npm` to ke
 
 Keep stage language consistent across these sections when changing an actual product status. Metrics are static content, not fetched data. The 500 SerpAPI calls are combined founder-reported usage; they are separate from the 101 customer product searches. Store-link clicks do not establish purchases. Update the dated footnote only when a new snapshot is supplied.
 
-The layout is in `src/app/page.tsx`; reusable illustrations and navigation are in `src/components`. Visual tokens, responsive rules, and motion are in `src/app/globals.css`. The hero background combines an original monochrome SVG hand study (`hand-artwork.tsx`), CSS halftone dots, and a grain overlay. `hero-backdrop.tsx` adds a pause/play control; the background stays still without JavaScript and for reduced-motion users. No video file or external download is required. Motion never hides essential text. The SVG line art makes no claim about pilot coverage or participating shops.
+The layout is in `src/app/page.tsx`; reusable illustrations and navigation are in `src/components`. Shared component styles are in `src/app/globals.css`; `src/app/editorial.css` supplies the monochrome editorial composition, responsive layout, and CSS motion. The full-screen centered hero uses a locally generated CGI chrome-hand image (`public/images/hand-studio.webp`, approximately 52 KB), slow CSS movement, halftone dots, and grain. This is animated still artwork, not the unavailable MP4 named in the design reference. The optimized local image is served through Next.js; no third-party image host or video download is required.
+
+`motion-control.tsx` controls automatic animation across the page. Decorative motion stays still without JavaScript or when reduced motion is preferred. The headline stays readable, while a smaller typing-style line cycles through products, prices, and availability. `editorial-motion.tsx` uses GSAP ScrollTrigger for the manifesto’s word-by-word color reveal; it reverts when motion is paused or reduced. Native scrolling is preserved. Desktop pilot panels stack using CSS sticky positioning and return to a normal flow on mobile or with reduced motion. `discovery-experience.tsx` lets pointer and keyboard users explore the four planned steps; it does not perform real product searches. The SVG city illustrations are concept artwork and make no claim about coverage or participating shops.
 
 The local shopping conversation and seller check-in are labelled illustrations. They deliberately have no input, checkout, ordering, or operational seller controls. Real CTAs open the exact supplied WhatsApp destinations.
 

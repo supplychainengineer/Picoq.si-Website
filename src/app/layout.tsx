@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "@fontsource-variable/manrope";
 import "./globals.css";
+import "./editorial.css";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {

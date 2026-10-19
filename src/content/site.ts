@@ -42,11 +42,20 @@ export const site = {
   hero: {
     eyebrow: "Small businesses. A future powered by agents.",
     heading: "Every small business deserves an agent.",
-    lines: ["Every small", "business", "deserves", "an agent."],
+    lines: ["Every small business", "deserves an agent."],
     description: "Picoq is building a way for small businesses to be discovered by the personal agents their customers use—starting with products, prices, and availability.",
     supporting: "Our online shopping assistant is live. Local discovery pilots are in development.",
     scroll: "Small beginnings. Bigger possibilities.",
-    background: { pause: "Pause background motion", play: "Play background motion" },
+    background: { pause: "Pause motion", play: "Play motion" },
+    index: "Independent businesses. Infinite possibility.",
+    scrollLabel: "Scroll to discover",
+    corner: "Building for a world of personal agents",
+    typingPrefix: "Starting with",
+    typingWords: ["products.", "prices.", "availability."],
+  },
+  ticker: {
+    label: "Products. Prices. Availability. A place in the conversation.",
+    words: ["Products", "Prices", "Availability", "A place in the conversation"],
   },
   visionDiagram: {
     label: "Our vision",
@@ -62,6 +71,8 @@ export const site = {
     flow: "Customer → Personal assistant → Picoq → Local business",
     footer: "Small businesses, part of the conversation.",
     status: "Future concept",
+    heading: "A small shop.\nA place in what’s next.",
+    description: "Our long-term vision connects a customer’s personal assistant with small-business agents. The full flow shown here is a concept we’re building toward.",
   },
   stages: [
     { label: "Live today", title: "Online shopping, in a chat.", description: "Discover and compare products from Amazon and Flipkart, with information retrieved through SerpAPI.", type: "live" },

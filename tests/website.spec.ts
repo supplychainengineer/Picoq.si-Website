@@ -119,7 +119,7 @@ test("layouts fit their viewport and reduced motion disables animations", async 
   if (testInfo.project.name === "reduced-motion") {
     expect(await page.locator("html").evaluate(el => getComputedStyle(el).scrollBehavior)).toBe("auto");
     expect(await page.locator(".hero-line").first().evaluate(el => getComputedStyle(el).animationName)).toBe("none");
-    expect(await page.locator(".signal").evaluate(el => getComputedStyle(el).animationName)).toBe("none");
+    expect(await page.locator(".cinematic-artwork").evaluate(el => getComputedStyle(el).animationName)).toBe("none");
   }
 });
 
