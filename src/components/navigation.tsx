@@ -5,12 +5,39 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 import { site } from "@/content/site";
 import { Wordmark } from "./brand";
 
+function scrollToSection(href: string) {
+  const section = document.getElementById(href === "#" ? "main" : href.slice(1));
+  if (!section) return false;
+  if (window.location.hash || window.location.href.endsWith("#")) {
+    history.replaceState(history.state, "", window.location.pathname + window.location.search);
+  }
+  section.setAttribute("tabindex", "-1");
+  section.focus({ preventScroll: true });
+  if (href === "#") window.scrollTo({ top: 0 });
+  else section.scrollIntoView({ block: "start" });
+  return true;
+}
+
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const dialog = useRef<HTMLDialogElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
   const destination = useRef<string | null>(null);
+
+  useEffect(() => {
+    // Keep real anchors for sharing and no-JavaScript use, but leave the address
+    // clean during in-page navigation, including the footer and back-to-top links.
+    if (window.location.hash) scrollToSection(window.location.hash);
+    const navigate = (event: MouseEvent) => {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      const anchor = event.target instanceof Element ? event.target.closest<HTMLAnchorElement>('a[href^="#"]') : null;
+      if (!anchor || anchor.hasAttribute("download") || (anchor.target && anchor.target !== "_self")) return;
+      if (scrollToSection(anchor.getAttribute("href")!)) event.preventDefault();
+    };
+    document.addEventListener("click", navigate);
+    return () => document.removeEventListener("click", navigate);
+  }, []);
 
   useEffect(() => {
     const update = () => setScrolled(window.scrollY > 50);
@@ -41,19 +68,16 @@ export function Navigation() {
   function afterClose() {
     setOpen(false);
     if (destination.current) {
-      const hash = destination.current;
+      const href = destination.current;
       destination.current = null;
-      const section = document.querySelector<HTMLElement>(hash);
-      history.pushState(null, "", hash);
-      section?.setAttribute("tabindex", "-1");
-      section?.focus({ preventScroll: true });
-      section?.scrollIntoView({ block: "start" });
+      scrollToSection(href);
     } else {
       trigger.current?.focus();
     }
   }
 
   function navigateToSection(event: React.MouseEvent<HTMLAnchorElement>, href: string) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
     destination.current = href;
     dialog.current?.close();

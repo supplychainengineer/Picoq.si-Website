@@ -43,6 +43,21 @@ test("every CTA destination and section navigation target is valid", async ({ pa
   }
   const brokenAnchors = await page.locator('a[href^="#"]').evaluateAll(links => links.map(link => link.getAttribute("href")!).filter(hash => hash !== "#" && !document.getElementById(hash.slice(1))));
   expect(brokenAnchors).toEqual([]);
+  if (await page.locator(".desktop-nav").isVisible()) {
+    for (const link of await page.locator(".desktop-nav a").all()) {
+      const section = page.locator((await link.getAttribute("href"))!);
+      await link.focus();
+      await page.keyboard.press("Enter");
+      await expect(section).toBeFocused();
+      await expect(page).toHaveURL("/");
+    }
+  }
+  await page.locator(".hero-scroll").click();
+  await expect(page.locator("#what-is-live")).toBeFocused();
+  await expect(page).toHaveURL("/");
+  await page.locator(".brand-link").click();
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+  await expect(page).toHaveURL("/");
 });
 
 test("FAQ and privacy disclosures work using only the keyboard", async ({ page }) => {
@@ -84,7 +99,7 @@ test("mobile navigation traps focus, closes, and sends focus to the chosen secti
   await page.keyboard.press("Enter");
   await dialog.getByRole("link", { name: /For businesses/ }).click();
   await expect(dialog).not.toBeVisible();
-  await expect(page).toHaveURL(/#for-businesses$/);
+  await expect(page).toHaveURL("/");
   await expect(page.locator("#for-businesses")).toBeFocused();
   expect(await page.evaluate(() => document.body.style.overflow)).toBe("");
   await open.click();

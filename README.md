@@ -42,6 +42,8 @@ The layout is in `src/app/page.tsx`; reusable illustrations and navigation are i
 
 The local shopping conversation and seller check-in are labelled illustrations. They deliberately have no input, checkout, ordering, or operational seller controls. Real CTAs open the exact supplied WhatsApp destinations.
 
+Section links scroll to and focus their destination while keeping the address free of section fragments such as `#for-businesses`. Shared section URLs still open the intended section, and the original anchor links work without JavaScript.
+
 ## Review and verification
 
 ```sh
